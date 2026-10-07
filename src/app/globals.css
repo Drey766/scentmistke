@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base resets ──────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    /* Deep purple-black background, brand body font, soft off-white text */
+    @apply bg-brand-black text-brand-light font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    /* All headings use display serif — Cormorant Garamond */
+    @apply font-display text-brand-white;
+  }
+  * {
+    @apply border-brand-mid;
+  }
+  /* Smooth scrollbar styling for dark theme */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #120E14; }
+  ::-webkit-scrollbar-thumb { background: #2E2535; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #C9A84C; }
+}
+
+/* ─── Component classes ────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Buttons ── */
+
+  /* Gold filled CTA — glowing shadow, uppercase tracking */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-sm
+           bg-brand-gold text-brand-black
+           font-body font-semibold text-sm uppercase tracking-widest
+           shadow-gold
+           transition-all duration-200
+           hover:bg-brand-gold-light hover:shadow-gold-lg
+           active:bg-brand-gold-dark
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Gold bordered, transparent background */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-sm
+           border border-brand-gold text-brand-gold bg-transparent
+           font-body font-semibold text-sm uppercase tracking-widest
+           transition-all duration-200
+           hover:bg-brand-gold hover:text-brand-black
+           active:bg-brand-gold-dark;
+  }
+
+  /* Ghost — muted text, no border */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 rounded-sm
+           text-brand-muted bg-transparent
+           font-body text-sm
+           transition-colors duration-200
+           hover:text-brand-white;
+  }
+
+  /* Dark surface button */
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2
+           px-5 py-2.5 rounded-sm
+           bg-brand-dark2 border border-brand-mid text-brand-light
+           font-body text-sm
+           transition-all duration-200
+           hover:border-brand-gold/40 hover:text-brand-white;
+  }
+
+  /* ── Form elements ── */
+
+  /* Dark input with purple/gold focus ring */
+  .input {
+    @apply w-full px-4 py-3 rounded-sm
+           bg-brand-dark2 border border-brand-mid
+           text-brand-white placeholder:text-brand-muted
+           font-body text-sm
+           transition-colors duration-200
+           focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30;
+  }
+
+  /* Small uppercase tracking label */
+  .label {
+    @apply block mb-1.5
+           text-brand-muted text-xs font-semibold uppercase tracking-wider font-body;
+  }
+
+  /* ── Cards ── */
+
+  /* Base dark card with border */
+  .card {
+    @apply bg-brand-dark border border-brand-mid rounded-sm overflow-hidden;
+  }
+
+  /* Card with hover: lifts, gold border tint, subtle glow */
+  .card-hover {
+    @apply card
+           transition-all duration-300
+           hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-gold;
+  }
+
+  /* Frosted glass card — used for overlays */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-sm;
+  }
+
+  /* ── Layout helpers ── */
+
+  /* Max-width container, centred, responsive horizontal padding */
+  .container-site {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Consistent vertical section spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* ── Typography helpers ── */
+
+  /* Small uppercase eyebrow with decorative gold line before it */
+  .section-tag {
+    @apply inline-flex items-center gap-3
+           text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] font-body
+           before:content-[''] before:block before:w-8 before:h-px before:bg-brand-gold;
+  }
+
+  /* ── Badges ── */
+
+  /* Gold "NEW" pill */
+  .badge-new {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           bg-brand-gold/20 text-brand-gold
+           text-xs font-semibold uppercase tracking-wide font-body;
+  }
+
+  /* Rose/coral sale badge */
+  .badge-sale {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           bg-brand-rose/20 text-brand-rose
+           text-xs font-semibold uppercase tracking-wide font-body;
+  }
+
+  /* Women's category badge — rose/pink tint */
+  .badge-womens {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           bg-rose-500/15 text-rose-300 border border-rose-500/20
+           text-xs font-semibold uppercase tracking-wide font-body;
+  }
+
+  /* Men's category badge — blue/steel tint */
+  .badge-mens {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           bg-blue-500/15 text-blue-300 border border-blue-500/20
+           text-xs font-semibold uppercase tracking-wide font-body;
+  }
+
+  /* Unisex category badge — purple tint */
+  .badge-unisex {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           bg-purple-500/15 text-purple-300 border border-purple-500/20
+           text-xs font-semibold uppercase tracking-wide font-body;
+  }
+
+  /* Scent family pill — base style; colour-coded by scent type via utility classes */
+  .scent-tag {
+    @apply inline-block px-2.5 py-0.5 rounded-full
+           text-xs font-medium font-body capitalize;
+  }
+
+  /* ── Blog prose styles ── */
+
+  /* Rich blog post HTML content styles */
+  .prose-article {
+    @apply text-brand-light font-body leading-relaxed;
+  }
+  .prose-article h2 {
+    @apply font-display text-2xl text-brand-white mt-10 mb-4;
+  }
+  .prose-article h3 {
+    @apply font-heading text-xl text-brand-white mt-8 mb-3;
+  }
+  .prose-article p {
+    @apply mb-5 text-brand-light;
+  }
+  .prose-article ul, .prose-article ol {
+    @apply mb-5 pl-6 space-y-2;
+  }
+  .prose-article li {
+    @apply text-brand-light;
+  }
+  .prose-article strong {
+    @apply text-brand-white font-semibold;
+  }
+  .prose-article blockquote {
+    @apply pl-4 border-l-2 border-brand-gold text-brand-muted italic my-6;
+  }
+  .prose-article a {
+    @apply text-brand-gold underline hover:text-brand-gold-light;
+  }
+}
